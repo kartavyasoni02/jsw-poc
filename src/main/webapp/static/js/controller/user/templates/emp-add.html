@@ -1,0 +1,75 @@
+<head>
+</head>
+ <div ng-show="denied_error" class="alert alert-danger">
+  <strong>Danger!</strong>  {{denied_error}}
+</div>
+
+<div ng-show="employe_show_list"  ng-hide="denied_error" class="jumbotron">
+	<section ng-controller="employesctrl" class="test_cls" 	data-ng-init="fn_load()">
+		 
+<form name="loginForm" novalidate ng-submit="addEmploye()">
+		<table class="no-border-on-me table ">
+
+			<tbody>
+				<tr>
+					</td>
+					
+					
+					<tr>
+					<td>FirstName</td>
+					<td><input class="form-control" type="text"
+							ng-model="firstName" placeholder="FirstName" />
+				</tr>
+				<tr>
+					<td>LastName</td>
+					<td><input class="form-control" type="text"
+							ng-model="lastName" placeholder="LastName" /></td>
+				</tr>
+				<tr>
+					<td>Address</td>
+					<td><input class="form-control" type="text"
+							ng-model="address" placeholder="Address" /></td>
+				</tr>
+				
+				<tr>
+					<td>Contact</td>
+					<td><input class="form-control" type="text"
+							ng-model="contact" placeholder="Contact" /></td>
+				</tr>
+				
+				<tr>
+					<td>Email</td>
+					<td><input class="form-control" type="text"
+							ng-model="email" placeholder="Email" /></td>
+				</tr>
+				<tr>
+					<td>
+						<button  class="btn btn-primary type="submit" ng-disabled="!(!!firstName && !!lastName&& !!address&& !!contact&& !!email)">Add User</button>
+
+					</td>
+					
+				</tr>
+			</tbody>
+		</table>
+</form>
+	</section>
+
+</div>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 

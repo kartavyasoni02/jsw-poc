@@ -1,0 +1,77 @@
+
+<div>
+	<section ng-controller="schedularController" class="test_cls"
+		data-ng-init="getAllschduleRunningJob()">
+
+		<h3>Schedule Details</h3>
+		<table
+			
+			class="table table-striped table-bordered" id="tableminutes">
+			<thead>
+				<tr>
+					<th>Id</th>
+					<th>JobName</th>
+					<th>Status</th>
+					<th>Type Schedule</th>
+					<th>Job Execution Schedule</th>
+					<th>Active</th>
+					<th>Action</th>
+				</tr>
+			</thead>
+			
+			<tbody>
+				<tr ng-repeat="ScheduledJob in listSchedulesJob">
+					<td>{{$index + 1}}</td>
+					<td>{{ScheduledJob.jobName}}</td>
+					<td>{{ScheduledJob.status}}</td>
+					<td>{{ScheduledJob.scheduleRadio}}</td>
+					<td ng-if="ScheduledJob.scheduleRadio == 'minutes'">In Every {{ScheduledJob.minuteInterval}} minutes</td>
+					<td ng-if="ScheduledJob.scheduleRadio == 'hourly'">In Every {{ScheduledJob.hourInterval}} hours</td>
+					<td ng-if="ScheduledJob.scheduleRadio == 'daily'">Daily at {{ScheduledJob.time}} hours</td>
+					<td ng-if="ScheduledJob.scheduleRadio == 'weekly'">Every {{ScheduledJob.dayOfWeek}} at {{ScheduledJob.time}} hours</td>
+					<td ng-if="ScheduledJob.scheduleRadio == 'monthly'">Every {{ScheduledJob.monthDate}} of Month at {{ScheduledJob.time}} hours</td>
+					<td ng-if="ScheduledJob.scheduleRadio == 'yearly'">Every {{ScheduledJob.monthDate}} of {{ScheduledJob.month | monthName}} at {{ScheduledJob.time}} hours</td>
+					<td>{{ScheduledJob.active}}</td>
+					<td>
+
+ 	<div class="btn-group">
+							<button class="btn btn-warning btn-xs dropdown-toggle"
+								type="button" data-toggle="dropdown"
+								data-th-text="#{user.list.actions.label}">
+								Actions<span class="caret"></span>
+							</button>
+							     <ul class="dropdown-menu">
+							  
+  
+								 
+								
+							
+								<li data-ng-if="listSchedulesJob[$index + 0].status =='SCHEDULED'" ><a
+									ng-click='openConfirmBox(listSchedulesJob[$index + 0].jobName)'> <span
+										class="glyphicon glyphicon-trash"></span>&nbsp;&nbsp; <span
+										data-th-text="#{button.label.delete}">Stop</span>
+								</a></li> 
+                             
+								 
+								 
+								 
+								 
+							 <li data-ng-if="listSchedulesJob[$index + 0].status =='PAUSED'"><a
+									ng-click='reScheduleJob(listSchedulesJob[$index + 0].jobName)'> <span
+										class="glyphicon glyphicon-trash"></span>&nbsp;&nbsp; <span>Start</span>
+								</a></li>  
+							</ul>
+							</p>
+						</div>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		
+		<div ng-show="success_msg" class="alert alert-success">
+			<strong>Success!</strong> {{success_msg}}
+		</div>
+
+	</section>
+
+</div>

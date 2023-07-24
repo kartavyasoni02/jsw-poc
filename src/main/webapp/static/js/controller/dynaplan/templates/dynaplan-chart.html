@@ -1,0 +1,181 @@
+
+<head>
+
+
+
+<script type="text/javascript">
+	$(document).ready(function() {
+		
+	//	alert("inside ready "+document.getElementById("#p").value);
+		 Highcharts.setOptions({
+	            global: {
+	                useUTC: false
+	            }
+	        });
+		myFunction();
+		// set up the updating of the chart each second
+
+		var timerID = setInterval(function() {
+			myFunction();
+		}, 25000);
+ 
+	});
+	function myFunction() {
+		  
+			$.getJSON('http://localhost:8080/dynaplan/populateDynaplan', function(data) {
+				var fruits = [];
+				for(i = 0 ;i<data.length ; i++){
+					fruits.push( {
+						name : data[i].planName,
+						data : data[i].dynaPlanList,
+						tooltip : {
+							valueDecimals : 2
+						},
+						marker : {
+							enabled : true,
+							symbol : 'square',
+							radius : 10,
+							lineWidth : 1
+						}
+					//   step: 'left'
+					})
+				}
+			// Create the chart
+			$('#container').highcharts('StockChart',{
+				 chart: {
+		                zoomType: 'x',
+		                plotBorderWidth: 1,
+		                animation: {
+		                    duration: 1000
+		                },
+						borderColor: '#808389',
+            			borderRadius: 10,
+            			borderWidth: 3,
+            			type: 'line',
+            			
+            			 marginLeft: 25,
+            			 marginRight: 115	,
+            			reflow: false,
+            			 width : 1100,
+            			 height : 490
+		                
+		            },
+		            scrollbar: {
+		                enabled: true
+		            },
+		            navigator : {
+		                enabled : true
+		            },
+				xAxis : {
+					opposite : true,  minPadding: 1.05,
+		            maxPadding: 2.05,
+					title : {
+						enabled : true,
+						 text: null
+					},
+					type : 'datetime',
+					 dateTimeLabelFormats: {
+			                //second: '%Y-%m-%d<br/>%H:%M:%S', 
+			                 minute: '%Y-%m-%d<br/>%H:%M', 
+			                 hour: '%Y-%m-%d<br/>%H:%M',
+			                day: '%Y<br/>%m-%d',
+			                week: '%Y<br/>%m-%d',
+			                month: '%Y-%m',
+			                year: '%Y' 
+			            },
+					//tickPixelInterval: 80,
+					
+					 gridLineWidth: 0.8,
+			            gridZIndex: 4,
+			            gridLineColor: '#addaea',
+			            lineColor: '#808389',
+			            lineWidth: 1,
+			           // tickInterval: 1,
+			           
+
+				},
+				yAxis : {
+					opposite: false,
+					type : 'int',
+					visible : true,
+					showFirstLabel: true,
+		            showLastLabel: true,
+					categories: ['','BOL','LHF','RHD'],
+					
+					labels: {
+		                align: 'left'
+		                
+		            },
+				 title: {
+                     text: null
+                 },
+                 gridLineColor: '#6994ea',
+                	 gridLineWidth: 2,
+                	 lineColor: '#808389',
+                     lineWidth: 1,
+                     reversed: true
+                     
+				},
+
+				rangeSelector : {
+					 allButtonsEnabled: true,
+					selected : 0
+				},
+				 credits: {
+                     enabled: false
+                 },
+				title : {
+					text : 'DynaPlan Screen'
+				},
+				plotOptions : {
+					
+					line : {
+						dataLabels : {
+							enabled : false
+						}
+					}
+				},
+				legend: {
+					 enabled: true,
+		            layout: 'vertical',
+		            align: 'right',
+		            verticalAlign: 'middle',
+		            borderWidth: 1,
+		            y: 20,
+		            shadow: true 
+		           /*  enabled: true,
+					 align: 'right',
+			            backgroundColor: '#FCFFC5',
+			            borderColor: 'black',
+			            borderWidth: 2,
+			            layout: 'vertical',
+			            verticalAlign: 'top',
+			            y: 100,
+			            shadow: true */
+		            
+		        },
+				series : fruits
+			});
+
+			});
+	}
+</script>
+
+</head>
+<div  ng-controller="dynactrl">
+
+	<!--  <p>{{welmsg}}</p>	 -->
+
+
+	<section class="test_cls" data-ng-init="fn_load()">
+
+
+		<p>
+			<a href="">{{denied_error}}</a>
+		</p>
+		 
+	
+	
+<div id="container" style="min-width: 450px; height: 400px; margin: 0 auto"></div>
+</section>
+</div>

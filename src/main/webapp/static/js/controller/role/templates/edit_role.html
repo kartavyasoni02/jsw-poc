@@ -1,0 +1,52 @@
+<head>
+<style type="text/css">
+.topcorner {
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	font-size: 100%;
+}
+</style>
+
+</head>
+ <div ng-show="denied_error" class="alert alert-danger">
+  <strong>Danger!</strong>  {{denied_error}}
+</div>
+ <div ng-show="!denied_error || show_auth_user">
+	<div class="jumbotron">
+		<section ng-controller="rolectrl" class="test_cls" data-ng-init="fn_load()">
+			 
+			<h3>Edit Role</h3>
+			<div>
+				 
+					<table>
+						<tr>
+
+						</tr>
+
+						<tr>
+							<td>Rolename</td>
+							<td><input type="text" ng-model="edit_role_data.rolename"
+								name="rolename" class="form-control"></td>
+						</tr>
+						<tr>
+							<td><button type="button" value="Save"
+									class="btn btn-primary" ng-href='#roleedit'
+									ng-click='updateRole(edit_role_data)'>save</button></td>
+							<td>
+							
+							<td> 
+								<a href="#rolelist" class="btn btn-info" role="button">Cencel</a>
+								</td>
+							
+							 </td>
+						</tr>
+					</table>
+				 
+			</div>
+ 
+</section>
+
+</div>
+
+</div>

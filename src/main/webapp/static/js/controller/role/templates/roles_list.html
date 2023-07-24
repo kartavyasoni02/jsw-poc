@@ -1,0 +1,114 @@
+<head>
+<style type="text/css">
+.topcorner {
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	font-size: 100%;
+}
+</style>
+<style>
+h4 {
+	color:green;
+	margin-left: 10px;
+}
+</style>
+
+</head>
+
+ <div ng-show="denied_error" class="alert alert-danger">
+  <strong>Danger!</strong>  {{denied_error}}
+</div>
+        
+		 
+ 
+<div  ng-show="role_show_list">
+	<section ng-controller="rolectrl" class="test_cls" data-ng-init="fn_load()">
+		 
+
+
+
+
+
+		<table class="table table-striped table-bordered" ng-hide="decision">
+			<thead>
+				<h3>Role List</h3>
+				<tr>
+					<th>Id</th>
+					<th>RoleName</th>
+					<th>Action</th>
+
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="txn in roleList">
+					<td>{{$index + 1}}</td>
+					<td>{{roleList[$index + 0].rolename}}</td>
+					<td>
+						<div class="btn-group">
+							<button class="btn btn-warning btn-xs dropdown-toggle"
+								type="button" data-toggle="dropdown"
+								data-th-text="#{user.list.actions.label}">
+								Actions<span class="caret"></span>
+							</button>
+							<ul class="dropdown-menu">
+
+								<li><a ng-href='#rolelist_edit'
+									ng-click='edit(roleList[$index + 0].roleId)'> <span
+										class="glyphicon glyphicon-pencil"></span>&nbsp;&nbsp; <span
+										data-th-text="#{button.label.edit}">edit</span>
+								</a></li>
+								<!-- <li><a href="#"
+									data-th-href="@{/user/delete(id=${user.id},phase=stage)}">
+										<span class="glyphicon glyphicon-trash"></span>&nbsp;&nbsp; <span
+										data-th-text="#{button.label.delete}">delete</span>
+								</a></li> -->
+
+
+								<li><a ng-href='#roledelete'
+									ng-click='openConfirmBox(roleList[$index + 0].roleId)'> <span
+										class="glyphicon glyphicon-trash"></span>&nbsp;&nbsp; <span
+										data-th-text="#{button.label.delete}">delete</span>
+								</a></li>
+
+							</ul>
+						</div>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		
+		
+		
+		
+		<div ng-hide="decision4">
+
+			<div class="form-group">
+				<div class="col-sm-10">
+					Rolename <input type="text" ng-model="rolename" name="rolename"
+						class="form-control">
+				</div>
+				<div class="col-sm-2">Action</div>
+				<button type="button" value="Save" class="btn btn-primary"
+					ng-href='#roleadd' ng-click='roleAdd(rolename)' ng-disabled="!(!!rolename)">add</button>
+			</div>
+		</div>
+		
+		 <div ng-show="response_msg" class="col-sm-10">
+		<div class="alert alert-success">
+			<strong>Success!</strong>{{response_msg}}
+		
+		</div>	
+		</div>
+
+ 
+
+
+
+</section>
+
+
+
+</div>
+
+ 

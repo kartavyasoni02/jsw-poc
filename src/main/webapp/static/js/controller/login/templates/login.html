@@ -1,0 +1,51 @@
+<div class="container login-container">
+    	
+    	<div id="login-container">
+    	<br /> <br /> <div ng-show="error" class="alert alert-danger">{{error}}</div>
+        <form name="loginForm" novalidate ng-submit="checkLogin()">
+	    	<h1 class="title text-center">Log In</h1>
+            <p class="text-center subtitle">Login with your account</p>
+            <div class="form-content">
+            	<div class="input-group">
+  			<span class="input-group-addon" id="basic-addon1"><i class="fa fa-common fa-envelope-o" aria-hidden="true"></i></span>
+ 				    <input type="text" class="form-control" placeholder="Username or Email Address" required ng-model="username">
+ 				    <span ng-show="loginForm.username.$error.required">Required</span>
+				</div>
+                <div class="input-group">
+  			<span class="input-group-addon" id="basic-addon2"><i class="fa fa-common fa-key" aria-hidden="true"></i></span>
+ 				    <input type="password" class="form-control" placeholder="Password" required ng-model="password">
+ 				    <span  ng-show="loginForm.password.$error.required">Required</span>
+				</div>
+                
+                <button type="submit" class="btn btn-submit" ng-disabled="!loginForm.$valid">Log In</button>
+                
+            </div>
+            <div class="text-center"><a class="forgot-password-btn link" href="#" style="padding-bottom: 10px;">Forgot password?</a></div>
+             </form>
+        </div>
+       
+    </div>
+
+
+<!-- 
+<div class="jumbotron">
+	<br /> <br /> <div ng-show="error" class="alert alert-danger">{{error}}</div>
+	<form name="loginForm" novalidate ng-submit="checkLogin()">
+
+		<input  name="username" type="text"
+			placeholder="Username" required ng-model="username" /> 
+			<span ng-show="loginForm.username.$error.required">Required</span>
+
+<br /> <br /> 
+		<input   name="password" type="password"
+			placeholder="Password" required ng-model="password" /> 
+			<span  ng-show="loginForm.password.$error.required">Required</span>
+
+<br /> <br /> 
+		<button type="submit" value="SignIn"  
+			ng-disabled="!loginForm.$valid">
+			<span>SignIn</span>
+		</button>
+
+	</form>
+</div> -->

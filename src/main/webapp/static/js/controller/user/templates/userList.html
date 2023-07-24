@@ -1,0 +1,121 @@
+<head>
+<style type="text/css">
+.topcorner {
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	font-size: 100%;
+}
+</style>
+
+</head>
+ <div ng-show="denied_error" class="alert alert-danger">
+  <strong>Danger!</strong>  {{denied_error}}
+</div>
+        
+		 
+<div>
+	<section ng-controller="usersctrl"  ng-show="user_show_list" data-ng-init="fn_load()" class="test_cls">
+		
+			
+		<h3>User Details</h3>
+		<table class="table table-striped table-bordered">
+			<thead>
+				<tr>
+					<th>id</th>
+					<th>UserName</th>
+					<th>Enabled</th>
+					<th>Role</th>
+					<th>Action</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="u in userList">
+					<td>{{$index + 1}}</td>
+					<td>{{userList[$index + 0].username}}</td>
+					<td>{{userList[$index + 0].enabled}}</td>
+					<td>{{userList[$index + 0].roleName}}</td>
+
+					<td>
+						<div class="btn-group">
+							<button class="btn btn-warning btn-xs dropdown-toggle"
+								type="button" data-toggle="dropdown"
+								data-th-text="#{user.list.actions.label}">
+								Actions<span class="caret"></span>
+							</button>
+							<ul class="dropdown-menu">
+								<li><a ng-href='#useredit'
+									ng-click='editUser(userList[$index + 0].id)'> <span
+										class="glyphicon glyphicon-pencil"></span>&nbsp;&nbsp; <span
+										data-th-text="#{button.label.edit}">edit</span>
+								</a></li>
+								<li><a ng-href='#userdelete'
+									ng-click='openConfirmBox(userList[$index + 0].id)'> <span
+										class="glyphicon glyphicon-trash"></span>&nbsp;&nbsp; <span
+										data-th-text="#{button.label.delete}">delete</span>
+								</a></li>
+								
+							</ul>
+						</div>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		<form name="loginForm" novalidate ng-submit="addUser()">
+			<table class="no-border-on-me table ">
+				<thead>
+					<tr>
+						<th class="col-xs-1"></th>
+						<th class="col-xs-3">Username</th>
+						<th class="col-xs-2">Password</th>
+						<th class="col-xs-2">Enabled</th>
+						<th class="col-xs-3">Role</th>
+						<th class="col-xs-1">Action</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+
+
+
+						<td><input type="text" hidden="hidden" data-th-field="*{id}" />
+						</td>
+						<td><input class="form-control" type="text"
+							ng-model="username" placeholder="Username" /></td>
+
+						<td><input class="form-control" type="password"
+							ng-model="password" placeholder="Password" /></td>
+
+						<td><select class="form-control" ng-model="enabled">
+								<option value="true">True</option>
+								<option value="false">False</option>
+						</select></td> 
+						<td><select class="form-control" ng-model="roleId">
+						<option   value="{{}}"> </option>
+								<option ng-repeat="item in roleList.roles" value="{{item.roleId}}">{{item.rolename}}</option>
+								
+						</select>
+						<td>
+						 <button  class="btn btn-primary type="submit" ng-disabled="!(!!username && !!password  && !!enabled && !!roleId )">Add User</button>
+</form>
+							 
+						</td>
+						
+					</tr> 
+					<div ng-show="response_msg"  class="alert alert-success">
+  <strong>Success!</strong> {{response_msg}}
+</div> 
+ 				<div ng-show="user_response_msg"  class="alert alert-success">
+  <strong>Success!</strong> {{user_response_msg}}
+</div>
+	   
+ 
+				</tbody>
+			</table>
+		</form>
+		
+	
+		
+	</section>
+	
+</div>
